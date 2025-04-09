@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Webpack Template</title>
+    <title>Random's Weather Checker</title>
 </head>
 
 <body>
@@ -18,8 +18,10 @@
             <label for="location-name">Please input a location name:</label>
             <input type="text" name="location-name" id="location-name" placeholder="e.g. Washington" required>
         </fieldset>
-        <button type="submit">Get weather</button>
+        <button type="button" id="fetch-weather">Get weather</button>
     </form>
+
+    <div class="weather-data"></div>
 </body>
 
 </html>
