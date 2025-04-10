@@ -11,22 +11,30 @@ fetchWeather.addEventListener('click', () => {
     weatherData.textContent = locationName.value;
 });
 
+// async function fetchWeatherData() {
+//     const currentDate = new Date();
+
+//     const todaysDate = `${currentDate.getFullYear()}-${currentDate.getMonth()}-${currentDate.getDate()}`;
+
+//     const fetchedData = await fetch(
+//         'https://api.allorigins.win/get?url=' +
+//             encodeURIComponent(
+//                 `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/washington/${todaysDate}?key=LV7GDK42GAYSFKS3SEPANMFJL&include=days`
+//             )
+//     );
+
 async function fetchWeatherData() {
     const currentDate = new Date();
 
     const todaysDate = `${currentDate.getFullYear()}-${currentDate.getMonth()}-${currentDate.getDate()}`;
 
     const fetchedData = await fetch(
-        'https://api.allorigins.win/get?url=' +
-            encodeURIComponent(
-                `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/washington/${todaysDate}?key=LV7GDK42GAYSFKS3SEPANMFJL`
-            ),
-        { mode: 'cors' }
+        `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/washington/${todaysDate}?key=LV7GDK42GAYSFKS3SEPANMFJL&include=days`
     );
 
     const weatherData = await fetchedData.json();
 
-    console.log(weatherData.contents);
+    console.log(weatherData);
 }
 
 fetchWeatherData();
