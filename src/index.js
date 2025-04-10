@@ -34,7 +34,7 @@ async function fetchWeatherData(location) {
 
     const weatherData = await fetchedData.json();
 
-    console.log(weatherData);
+    console.log(weatherData.days[0]);
 
     console.log(weatherData.days[0].temp);
 
