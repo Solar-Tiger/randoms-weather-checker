@@ -20,13 +20,12 @@ async function fetchWeatherData() {
         'https://api.allorigins.win/get?url=' +
             encodeURIComponent(
                 `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/washington/${todaysDate}?key=LV7GDK42GAYSFKS3SEPANMFJL`
-            ),
-        { mode: 'cors' }
+            )
     );
 
     const weatherData = await fetchedData.json();
 
-    console.log(weatherData.contents);
+    console.log(weatherData);
 }
 
 fetchWeatherData();
