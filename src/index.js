@@ -11,17 +11,13 @@ fetchWeather.addEventListener('click', () => {
     fetchWeatherData(locationName.value);
 });
 
-// async function fetchWeatherData() {
-//     const currentDate = new Date();
+locationName.addEventListener('keypress', (e) => {
+    if (e.key !== 'Enter') return;
 
-//     const todaysDate = `${currentDate.getFullYear()}-${currentDate.getMonth()}-${currentDate.getDate()}`;
+    e.preventDefault();
 
-//     const fetchedData = await fetch(
-//         'https://api.allorigins.win/get?url=' +
-//             encodeURIComponent(
-//                 `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/washington/${todaysDate}?key=LV7GDK42GAYSFKS3SEPANMFJL&include=days`
-//             )
-//     );
+    fetchWeatherData(locationName.value);
+});
 
 async function fetchWeatherData(location) {
     const currentDate = new Date();
