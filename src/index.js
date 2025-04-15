@@ -6,7 +6,6 @@
 const locationName = document.querySelector('#location-name');
 const fetchWeather = document.querySelector('#fetch-weather');
 const weatherDataDisplay = document.querySelector('.weather-data-display');
-const weatherForm = document.querySelector('form');
 
 // Event listener for button click
 
