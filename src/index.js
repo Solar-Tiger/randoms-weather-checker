@@ -10,8 +10,6 @@ const weatherDataDisplay = document.querySelector('.weather-data-display');
 // Event listener for button click
 
 fetchWeather.addEventListener('click', () => {
-    console.log(locationName.value);
-
     displayWeatherData(locationName.value);
 });
 
@@ -42,17 +40,29 @@ async function fetchWeatherData(location) {
 async function displayWeatherData(location) {
     const fetchedWeatherData = await fetchWeatherData(location);
 
-    console.log(fetchedWeatherData.days[0].temp);
+    console.log(fetchedWeatherData.days[0].conditions);
 
-    weatherDataDisplay.textContent = fetchedWeatherData.days[0].temp;
+    const weatherIconImg = document.createElement('img');
+
+    switch (fetchedWeatherData.days[0].conditions) {
+        case (fetchedWeatherData.days[0].conditions = 'Partially cloudy'):
+            weatherIconImg.src =
+                '../src/assets/images/weather-condition-icons/partly_cloudy_day.svg';
+
+            weatherDataDisplay.appendChild(weatherIconImg);
+            break;
+        default:
+            console.log('No associated weather condition');
+    }
+
+    // weatherDataDisplay.textContent = fetchedWeatherData.days[0].temp;
 }
 
 /*  
     Relevant information for user
 
     1.) Conditions
-    2.) Datetime
-    3.) Description
-    4.) Feelslike, feelslikemax, feelslike min
-    5.) Temp, tempmax, tempmin
+    2.) Description
+    3.) Feelslike, feelslikemax, feelslike min
+    4.) Temp, tempmax, tempmin
 */
