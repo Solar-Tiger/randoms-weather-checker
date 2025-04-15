@@ -4,11 +4,17 @@ import './style.css';
 const locationName = document.querySelector('#location-name');
 const fetchWeather = document.querySelector('#fetch-weather');
 const weatherDataDisplay = document.querySelector('.weather-data-display');
+const weatherForm = document.querySelector('form');
 
 fetchWeather.addEventListener('click', () => {
     console.log(locationName.value);
 
     fetchWeatherData(locationName.value);
+});
+
+weatherForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    fetchWeather.click(locationName.value);
 });
 
 // async function fetchWeatherData() {
