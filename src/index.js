@@ -1,5 +1,5 @@
-import './reset.css';
-import './style.css';
+// import './reset.css';
+// import './style.css';
 
 // Get input, button and element to display weather information
 
@@ -40,19 +40,22 @@ async function fetchWeatherData(location) {
 async function displayWeatherData(location) {
     const fetchedWeatherData = await fetchWeatherData(location);
 
-    console.log(fetchedWeatherData.days[0].conditions);
+    console.log(fetchedWeatherData.days[0]);
+    console.log(
+        fetchedWeatherData.days[0].conditions.includes('Partially cloudy')
+    );
 
     const weatherIconImg = document.createElement('img');
 
-    switch (fetchedWeatherData.days[0].conditions) {
-        case (fetchedWeatherData.days[0].conditions = 'Partially cloudy'):
-            weatherIconImg.src =
-                '../src/assets/images/weather-condition-icons/partly_cloudy_day.svg';
+    if (fetchedWeatherData.days[0].conditions.includes('Partially cloudy')) {
+        weatherIconImg.src =
+            '../src/assets/images/weather-condition-icons/partly_cloudy_day.svg';
+        weatherIconImg.width = '75';
+        weatherIconImg.height = '75';
 
-            weatherDataDisplay.appendChild(weatherIconImg);
-            break;
-        default:
-            console.log('No associated weather condition');
+        weatherDataDisplay.appendChild(weatherIconImg);
+    } else {
+        console.log('No associated weather condition');
     }
 
     // weatherDataDisplay.textContent = fetchedWeatherData.days[0].temp;
