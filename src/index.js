@@ -1,33 +1,28 @@
-import './reset.css';
-import './style.css';
+// import './reset.css';
+// import './style.css';
+
+// Get input, button and element to display weather information
 
 const locationName = document.querySelector('#location-name');
 const fetchWeather = document.querySelector('#fetch-weather');
 const weatherDataDisplay = document.querySelector('.weather-data-display');
 const weatherForm = document.querySelector('form');
 
+// Event listener for button click
+
 fetchWeather.addEventListener('click', () => {
-    console.log(locationName.value);
-
-    fetchWeatherData(locationName.value);
+    displayWeatherData(locationName.value);
 });
 
-weatherForm.addEventListener('submit', (e) => {
+// Event listener for enter key
+
+locationName.addEventListener('keypress', (e) => {
+    if (e.key !== 'Enter') return;
+
     e.preventDefault();
-    fetchWeather.click(locationName.value);
+
+    displayWeatherData(locationName.value);
 });
-
-// async function fetchWeatherData() {
-//     const currentDate = new Date();
-
-//     const todaysDate = `${currentDate.getFullYear()}-${currentDate.getMonth()}-${currentDate.getDate()}`;
-
-//     const fetchedData = await fetch(
-//         'https://api.allorigins.win/get?url=' +
-//             encodeURIComponent(
-//                 `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/washington/${todaysDate}?key=LV7GDK42GAYSFKS3SEPANMFJL&include=days`
-//             )
-//     );
 
 async function fetchWeatherData(location) {
     const currentDate = new Date();
@@ -40,9 +35,38 @@ async function fetchWeatherData(location) {
 
     const weatherData = await fetchedData.json();
 
-    console.log(weatherData.days[0]);
-
-    console.log(weatherData.days[0].temp);
-
-    weatherDataDisplay.textContent = weatherData.days[0].temp;
+    return weatherData;
 }
+
+async function displayWeatherData(location) {
+    const fetchedWeatherData = await fetchWeatherData(location);
+
+    console.log(fetchedWeatherData.days[0]);
+    console.log(
+        fetchedWeatherData.days[0].conditions.includes('Partially cloudy')
+    );
+
+    const weatherIconImg = document.createElement('img');
+
+    if (fetchedWeatherData.days[0].conditions.includes('Partially cloudy')) {
+        weatherIconImg.src =
+            '../src/assets/images/weather-condition-icons/partly_cloudy_day.svg';
+        weatherIconImg.width = '75';
+        weatherIconImg.height = '75';
+
+        weatherDataDisplay.appendChild(weatherIconImg);
+    } else {
+        console.log('No associated weather condition');
+    }
+
+    // weatherDataDisplay.textContent = fetchedWeatherData.days[0].temp;
+}
+
+/*  
+    Relevant information for user
+
+    1.) Conditions
+    2.) Description
+    3.) Feelslike, feelslikemax, feelslike min
+    4.) Temp, tempmax, tempmin
+*/
