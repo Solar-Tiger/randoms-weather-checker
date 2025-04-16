@@ -61,6 +61,27 @@ async function displayWeatherData(location) {
     // weatherDataDisplay.textContent = fetchedWeatherData.days[0].temp;
 }
 
+function displayCurrentWeatherIcon(currentWeather) {
+    if (
+        currentWeather.days[0].icon === 'partly-cloudy-day' ||
+        currentWeather.days[0].icon === 'partly-cloudy-night'
+    ) {
+        weatherIconImg.src =
+            '../src/assets/images/weather-condition-icons/partly_cloudy_day.svg';
+        weatherIconImg.width = '75';
+        weatherIconImg.height = '75';
+
+        weatherDataDisplay.appendChild(weatherIconImg);
+    } else if (currentWeather.days[0].icon === 'snow') {
+        weatherIconImg.src =
+            '../src/assets/images/weather-condition-icons/partly_cloudy_day.svg';
+        weatherIconImg.width = '75';
+        weatherIconImg.height = '75';
+    } else {
+        console.log('No associated weather condition');
+    }
+}
+
 /*  
     Relevant information for user
 
