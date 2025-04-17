@@ -63,8 +63,9 @@ function displayCurrentWeatherIcon(currentWeather) {
 /*  
     Relevant information for user
 
-    1.) Conditions(snow, rain, fog, wind, cloudy, partly-cloudy-day/partly-cloudy-night, clear-day/clear-night)
-    2.) Description
-    3.) Feelslike, feelslikemax, feelslike min
-    4.) Temp, tempmax, tempmin
+    1.) Location Name
+    2.) Conditions(snow, rain, fog, wind, cloudy, partly-cloudy-day/partly-cloudy-night, clear-day/clear-night)
+    3.) Description
+    4.) Feelslike, feelslikemax, feelslike min
+    5.) Temp, tempmax, tempmin
 */
