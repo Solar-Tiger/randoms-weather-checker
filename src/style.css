@@ -26,11 +26,15 @@ button {
 .weather-information-box {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    height: 300px;
+    grid-template-rows: 1fr 1fr 1fr;
+    min-height: 300px;
     max-width: 360px;
     border: 2px solid black;
     margin: 10px;
+}
+
+.weather-location {
+    grid-column: 1 / span 2;
 }
 
 .temperature-container {
