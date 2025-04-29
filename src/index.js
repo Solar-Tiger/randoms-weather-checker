@@ -74,7 +74,7 @@ function displayCurrentWeatherIcon(currentWeather) {
         weatherDataDisplay.appendChild(weatherIconImg);
     } else if (currentWeather.days[0].icon === 'snow') {
         weatherIconImg.src =
-            '../src/assets/images/weather-condition-icons/partly_cloudy_day.svg';
+            '../src/assets/images/weather-condition-icons/snow.svg';
         weatherIconImg.width = '75';
         weatherIconImg.height = '75';
     } else {
