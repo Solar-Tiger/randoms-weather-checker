@@ -22,3 +22,28 @@ button {
         padding: 6px;
     }
 }
+
+.weather-information-box {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    height: 300px;
+    max-width: 360px;
+    border: 2px solid black;
+    margin: 10px;
+}
+
+.temperature-container {
+    justify-items: center;
+    margin: 5px;
+    border: 2px solid black;
+}
+
+.current-temperature {
+    font-size: 50px;
+}
+
+.weather-description {
+    grid-column: 1 / span 2;
+    margin: 10px;
+}
