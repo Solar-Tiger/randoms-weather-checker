@@ -40,53 +40,32 @@ async function fetchWeatherData(location) {
 async function displayWeatherData(location) {
     const fetchedWeatherData = await fetchWeatherData(location);
 
-    console.log(fetchedWeatherData.days[0]);
-    console.log(
-        fetchedWeatherData.days[0].conditions.includes('Partially cloudy')
+    // console.log(fetchedWeatherData.days[0]);
+    console.log(fetchedWeatherData.days[0].icon);
+
+    const weatherIcon = displayCurrentWeatherIcon(
+        fetchedWeatherData.days[0].icon
     );
 
-    const weatherIconImg = document.createElement('img');
-
-    if (fetchedWeatherData.days[0].conditions.includes('Partially cloudy')) {
-        weatherIconImg.src =
-            '../src/assets/images/weather-condition-icons/partly_cloudy_day.svg';
-        weatherIconImg.width = '75';
-        weatherIconImg.height = '75';
-
-        weatherDataDisplay.appendChild(weatherIconImg);
-    } else {
-        console.log('No associated weather condition');
-    }
-
-    // weatherDataDisplay.textContent = fetchedWeatherData.days[0].temp;
+    document.body.appendChild(weatherIcon);
 }
 
 function displayCurrentWeatherIcon(currentWeather) {
-    if (
-        currentWeather.days[0].icon === 'partly-cloudy-day' ||
-        currentWeather.days[0].icon === 'partly-cloudy-night'
-    ) {
-        weatherIconImg.src =
-            '../src/assets/images/weather-condition-icons/partly_cloudy_day.svg';
-        weatherIconImg.width = '75';
-        weatherIconImg.height = '75';
+    const weatherIconImg = document.createElement('img');
 
-        weatherDataDisplay.appendChild(weatherIconImg);
-    } else if (currentWeather.days[0].icon === 'snow') {
-        weatherIconImg.src =
-            '../src/assets/images/weather-condition-icons/snow.svg';
-        weatherIconImg.width = '75';
-        weatherIconImg.height = '75';
-    } else {
-        console.log('No associated weather condition');
-    }
+    weatherIconImg.src = `../src/assets/images/weather-condition-icons/${currentWeather}.svg`;
+    weatherIconImg.width = '75';
+    weatherIconImg.height = '75';
+
+    return weatherIconImg;
 }
 
 /*  
     Relevant information for user
 
-    1.) Conditions(snow, rain, fog, wind, cloudy, partly-cloudy-day/partly-cloudy-night, clear-day/clear-night)
-    2.) Description
-    3.) Feelslike, feelslikemax, feelslike min
-    4.) Temp, tempmax, tempmin
+    1.) Location Name
+    2.) Conditions(snow, rain, fog, wind, cloudy, partly-cloudy-day/partly-cloudy-night, clear-day/clear-night)
+    3.) Description
+    4.) Feelslike, feelslikemax, feelslike min
+    5.) Temp, tempmax, tempmin
 */
