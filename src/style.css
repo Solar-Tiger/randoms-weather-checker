@@ -50,9 +50,15 @@ button {
     font-size: 50px;
 }
 
+.temp-and-conditions {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
 .weather-max-and-min {
     display: flex;
-    justify-content: center;
     align-items: center;
     gap: 20px;
 }
