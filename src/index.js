@@ -54,8 +54,8 @@ function displayCurrentWeatherIcon(currentWeather) {
     const weatherIconImg = document.createElement('img');
 
     weatherIconImg.src = `../src/assets/images/weather-condition-icons/${currentWeather}.svg`;
-    weatherIconImg.width = '75';
-    weatherIconImg.height = '75';
+    weatherIconImg.width = '70';
+    weatherIconImg.height = '70';
 
     return weatherIconImg;
 }
