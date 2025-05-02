@@ -69,12 +69,80 @@ function displayCurrentWeatherIcon(currentWeather) {
 }
 
 async function displayWeatherLocation(location) {
+    // Create location name display
     const nameDisplay = document.createElement('p');
 
     nameDisplay.classList.add('weather-location');
     nameDisplay.textContent = location.resolvedAddress;
 
-    weatherInformationBox.appendChild(nameDisplay);
+    // Create weather icon and temperature display
+    const weatherTempDisplay = document.createElement('div');
+
+    weatherTempDisplay.classList.add('temperature-container');
+
+    const weatherTemp = document.createElement('p');
+
+    weatherTemp.classList.add('current-temperature');
+    weatherTemp.textContent = location.days[0].temp;
+
+    weatherTempDisplay.append(
+        displayCurrentWeatherIcon(location.days[0].icon),
+        weatherTemp
+    );
+
+    // Create weather min and max display
+    const weatherTempAndConditionsDisplay = document.createElement('div');
+
+    weatherTempAndConditionsDisplay.classList.add('temp-and-conditions');
+
+    const weatherMaxAndMin = document.createElement('div');
+    const weatherMax = document.createElement('div');
+    const weatherMin = document.createElement('div');
+
+    weatherMaxAndMin.classList.add('weather-max-and-min');
+    weatherMax.classList.add('weather-max');
+    weatherMin.classList.add('weather-min');
+
+    const max = document.createElement('p');
+    const tempMax = document.createElement('p');
+
+    max.textContent = 'Max';
+    tempMax.textContent = location.days[0].tempmax;
+
+    weatherMax.append(max, tempMax);
+
+    const min = document.createElement('p');
+    const tempMin = document.createElement('p');
+
+    min.textContent = 'Min';
+    tempMin.textContent = location.days[0].tempmin;
+
+    weatherMin.append(min, tempMin);
+
+    weatherMaxAndMin.append(weatherMax, weatherMin);
+
+    // Create conditions display
+    const weatherConditionsDisplay = document.createElement('div');
+
+    weatherConditionsDisplay.classList.add('weather-conditions');
+
+    const weatherConditionsCurrent = document.createElement('p');
+
+    weatherConditionsCurrent.classList.add('weather-conditions-current');
+    weatherConditionsCurrent.textContent = location.days[0].conditions;
+
+    weatherConditionsDisplay.appendChild(weatherConditionsCurrent);
+
+    weatherTempAndConditionsDisplay.appendChild(
+        weatherMaxAndMin,
+        weatherConditionsDisplay
+    );
+
+    weatherInformationBox.append(
+        nameDisplay,
+        weatherTempDisplay,
+        weatherTempAndConditionsDisplay
+    );
 }
 
 // async function displayWeatherData() {
