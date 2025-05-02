@@ -65,5 +65,6 @@ button {
 
 .weather-description {
     grid-column: 1 / span 2;
+    justify-self: center;
     margin: 10px;
 }
