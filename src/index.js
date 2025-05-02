@@ -133,7 +133,7 @@ async function displayWeatherLocation(location) {
 
     weatherConditionsDisplay.appendChild(weatherConditionsCurrent);
 
-    weatherTempAndConditionsDisplay.appendChild(
+    weatherTempAndConditionsDisplay.append(
         weatherMaxAndMin,
         weatherConditionsDisplay
     );
