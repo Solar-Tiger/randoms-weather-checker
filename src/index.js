@@ -50,12 +50,6 @@ async function displayWeatherData(location) {
     weatherInformationBox.textContent = '';
 
     displayWeatherLocation(fetchedWeatherData);
-
-    const weatherIcon = displayCurrentWeatherIcon(
-        fetchedWeatherData.days[0].icon
-    );
-
-    document.body.appendChild(weatherIcon);
 }
 
 function displayCurrentWeatherIcon(currentWeather) {
@@ -138,10 +132,17 @@ async function displayWeatherLocation(location) {
         weatherConditionsDisplay
     );
 
+    // Create description display
+    const weatherDescription = document.createElement('p');
+
+    weatherDescription.classList.add('weather-description');
+    weatherDescription.textContent = location.days[0].description;
+
     weatherInformationBox.append(
         nameDisplay,
         weatherTempDisplay,
-        weatherTempAndConditionsDisplay
+        weatherTempAndConditionsDisplay,
+        weatherDescription
     );
 }
 
