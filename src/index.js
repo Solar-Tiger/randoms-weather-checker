@@ -82,7 +82,18 @@ function displayCurrentWeatherIcon(currentWeather) {
     return weatherIconImg;
 }
 
+function displayWeatherLocationName(locationName) {
+    const nameDisplay = document.createElement('p');
+
+    nameDisplay.classList.add('weather-location');
+    nameDisplay.textContent = locationName.resolvedAddress;
+
+    return nameDisplay;
+}
+
 async function displayWeatherLocation(location) {
+    const locationName = displayWeatherLocationName(location);
+
     // Create location name display
     const nameDisplay = document.createElement('p');
 
@@ -159,7 +170,7 @@ async function displayWeatherLocation(location) {
     weatherDescription.textContent = location.days[0].description;
 
     weatherInformationBox.append(
-        nameDisplay,
+        locationName,
         weatherTempDisplay,
         weatherTempAndConditionsDisplay,
         weatherDescription
