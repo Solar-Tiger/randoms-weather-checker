@@ -1,11 +1,19 @@
-// import './reset.css';
-// import './style.css';
+import './reset.css';
+import './style.css';
+import clearDay from './assets/images/weather-condition-icons/clear-day.svg';
+import clearNight from './assets/images/weather-condition-icons/clear-night.svg';
+import cloudy from './assets/images/weather-condition-icons/cloudy.svg';
+import fog from './assets/images/weather-condition-icons/fog.svg';
+import partlyCloudyDay from './assets/images/weather-condition-icons/partly-cloudy-day.svg';
+import partylyCloudyNight from './assets/images/weather-condition-icons/partly-cloudy-night.svg';
+import rain from './assets/images/weather-condition-icons/rain.svg';
+import snow from './assets/images/weather-condition-icons/snow.svg';
+import wind from './assets/images/weather-condition-icons/wind.svg';
 
 // Get input, button and element to display weather information
 
 const locationName = document.querySelector('#location-name');
 const fetchWeather = document.querySelector('#fetch-weather');
-const weatherDataDisplay = document.querySelector('.weather-data-display');
 const weatherInformationBox = document.querySelector(
     '.weather-information-box'
 );
@@ -53,9 +61,21 @@ async function displayWeatherData(location) {
 }
 
 function displayCurrentWeatherIcon(currentWeather) {
+    const weatherIcons = {
+        'clear-day': clearDay,
+        'clear-night': clearNight,
+        cloudy: cloudy,
+        fog: fog,
+        'partly-cloudy-day': partlyCloudyDay,
+        'partly-cloudy-night': partylyCloudyNight,
+        rain: rain,
+        snow: snow,
+        wind: wind
+    };
+
     const weatherIconImg = document.createElement('img');
 
-    weatherIconImg.src = `../src/assets/images/weather-condition-icons/${currentWeather}.svg`;
+    weatherIconImg.src = weatherIcons[currentWeather];
     weatherIconImg.width = '70';
     weatherIconImg.height = '70';
 
