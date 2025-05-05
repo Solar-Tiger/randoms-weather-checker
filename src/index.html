@@ -4,8 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="reset.css">
-    <link rel="stylesheet" href="style.css">
     <title>Random's Weather Checker</title>
 </head>
 
@@ -22,15 +20,13 @@
         <button type="button" id="fetch-weather">Get weather</button>
     </form>
 
-    <div class="weather-data-display">
-    </div>
-
     <div class="weather-information-box">
         <p class="weather-location">
             California
         </p>
         <div class="temperature-container">
-            <img src="assets/images/weather-condition-icons/clear-day.svg" alt="sunny day" height="70" width="70">
+            <img src="<%=require('./assets/images/weather-condition-icons/clear-day.svg')%>" alt="sunny day" height="70"
+                width="70">
             <p class="current-temperature">45.5</p>
         </div>
         <div class="temp-and-conditions">
@@ -50,7 +46,6 @@
         </div>
         <p class="weather-description">This is the current weather condition. Accept you're a snail now.</p>
     </div>
-    <script src="index.js"></script>
 </body>
 
 </html>
