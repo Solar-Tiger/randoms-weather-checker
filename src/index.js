@@ -60,7 +60,11 @@ async function displayWeatherData(location) {
     displayWeatherLocation(fetchedWeatherData);
 }
 
-function displayCurrentWeatherIcon(currentWeather) {
+function displayCurrentWeatherIcon(weatherIcon, weatherCurrentTemp) {
+    const weatherTempDisplay = document.createElement('div');
+
+    weatherTempDisplay.classList.add('temperature-container');
+
     const weatherIcons = {
         'clear-day': clearDay,
         'clear-night': clearNight,
@@ -75,44 +79,35 @@ function displayCurrentWeatherIcon(currentWeather) {
 
     const weatherIconImg = document.createElement('img');
 
-    weatherIconImg.src = weatherIcons[currentWeather];
+    weatherIconImg.src = weatherIcons[weatherIcon];
     weatherIconImg.width = '70';
     weatherIconImg.height = '70';
 
-    return weatherIconImg;
+    const weatherCurrentTempDisplay = document.createElement('p');
+
+    weatherCurrentTempDisplay.classList.add('current-temperature');
+    weatherCurrentTempDisplay.textContent = weatherCurrentTemp;
+
+    weatherTempDisplay.append(weatherIconImg, weatherCurrentTempDisplay);
+
+    return weatherTempDisplay;
 }
 
 function displayWeatherLocationName(locationName) {
     const nameDisplay = document.createElement('p');
 
     nameDisplay.classList.add('weather-location');
-    nameDisplay.textContent = locationName.resolvedAddress;
+    nameDisplay.textContent = locationName;
 
     return nameDisplay;
 }
 
 async function displayWeatherLocation(location) {
-    const locationName = displayWeatherLocationName(location);
+    const locationName = displayWeatherLocationName(location.resolvedAddress);
 
-    // Create location name display
-    const nameDisplay = document.createElement('p');
-
-    nameDisplay.classList.add('weather-location');
-    nameDisplay.textContent = location.resolvedAddress;
-
-    // Create weather icon and temperature display
-    const weatherTempDisplay = document.createElement('div');
-
-    weatherTempDisplay.classList.add('temperature-container');
-
-    const weatherTemp = document.createElement('p');
-
-    weatherTemp.classList.add('current-temperature');
-    weatherTemp.textContent = location.days[0].temp;
-
-    weatherTempDisplay.append(
-        displayCurrentWeatherIcon(location.days[0].icon),
-        weatherTemp
+    const weatherTempDisplay = displayCurrentWeatherIcon(
+        location.days[0].icon,
+        location.days[0].temp
     );
 
     // Create weather min and max display
