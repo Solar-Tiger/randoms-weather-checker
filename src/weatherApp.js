@@ -10,8 +10,6 @@ import rain from './assets/images/weather-condition-icons/rain.svg';
 import snow from './assets/images/weather-condition-icons/snow.svg';
 import wind from './assets/images/weather-condition-icons/wind.svg';
 
-// Get input, button and element to display weather information
-
 const weatherInformationBox = document.querySelector(
     '.weather-information-box'
 );
@@ -33,7 +31,7 @@ async function fetchWeatherData(location) {
     return weatherData;
 }
 
-// Displays fetched weather data using location name
+// Displays fetched weather
 async function displayWeatherData(location) {
     const fetchedWeatherData = await fetchWeatherData(location);
 
