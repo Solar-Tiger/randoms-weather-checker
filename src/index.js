@@ -1,4 +1,5 @@
 import { displayWeatherData } from './weatherApp';
+import { toggleTemp } from './toggleTemp';
 
 const locationName = document.querySelector('#location-name');
 const fetchWeather = document.querySelector('#fetch-weather');
@@ -18,3 +19,5 @@ locationName.addEventListener('keypress', (e) => {
 
     displayWeatherData(locationName.value);
 });
+
+toggleTemp();
