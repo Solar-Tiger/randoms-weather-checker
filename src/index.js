@@ -57,7 +57,16 @@ async function displayWeatherData(location) {
 
     weatherInformationBox.textContent = '';
 
-    displayWeatherLocation(fetchedWeatherData);
+    displayWeatherLocationInformation(fetchedWeatherData);
+}
+
+function displayWeatherLocationName(locationName) {
+    const nameDisplay = document.createElement('p');
+
+    nameDisplay.classList.add('weather-location');
+    nameDisplay.textContent = locationName;
+
+    return nameDisplay;
 }
 
 function displayCurrentWeatherIcon(weatherIcon, weatherCurrentTemp) {
@@ -93,16 +102,7 @@ function displayCurrentWeatherIcon(weatherIcon, weatherCurrentTemp) {
     return weatherTempDisplay;
 }
 
-function displayWeatherLocationName(locationName) {
-    const nameDisplay = document.createElement('p');
-
-    nameDisplay.classList.add('weather-location');
-    nameDisplay.textContent = locationName;
-
-    return nameDisplay;
-}
-
-async function displayWeatherLocation(location) {
+async function displayWeatherLocationInformation(location) {
     const locationName = displayWeatherLocationName(location.resolvedAddress);
 
     const weatherTempDisplay = displayCurrentWeatherIcon(
