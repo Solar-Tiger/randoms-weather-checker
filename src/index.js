@@ -1,8 +1,9 @@
 import { displayWeatherData } from './weatherApp';
-import { toggleTemp } from './toggleTemp';
+import { toggleTemp, changeTempScaleDisplay } from './toggleTemp';
 
 const locationName = document.querySelector('#location-name');
 const fetchWeather = document.querySelector('#fetch-weather');
+const changeTemp = document.querySelector('#change-temp');
 
 // Event listener for button click
 
@@ -20,4 +21,7 @@ locationName.addEventListener('keypress', (e) => {
     displayWeatherData(locationName.value);
 });
 
-toggleTemp();
+changeTemp.addEventListener('click', () => {
+    toggleTemp();
+    changeTempScaleDisplay();
+});
