@@ -98,6 +98,9 @@ function displayWeatherMaxMinAndCondition(max, min, conditions) {
     const maxDisplay = document.createElement('p');
     const tempMax = document.createElement('p');
 
+    maxDisplay.classList.add('max');
+    tempMax.classList.add('max-temp');
+
     maxDisplay.textContent = 'Max';
     tempMax.textContent = max;
 
@@ -105,6 +108,9 @@ function displayWeatherMaxMinAndCondition(max, min, conditions) {
 
     const minDisplay = document.createElement('p');
     const tempMin = document.createElement('p');
+
+    minDisplay.classList.add('min');
+    tempMin.classList.add('min-temp');
 
     minDisplay.textContent = 'Min';
     tempMin.textContent = min;
