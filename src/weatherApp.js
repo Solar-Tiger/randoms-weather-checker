@@ -35,7 +35,7 @@ async function fetchWeatherData(location) {
 async function displayWeatherData(location) {
     const fetchedWeatherData = await fetchWeatherData(location);
 
-    weatherInformationBox.textContent = '';
+    // weatherInformationBox.textContent = '';
 
     displayWeatherLocationInformation(fetchedWeatherData);
 }
@@ -149,7 +149,11 @@ function displayWeatherLocationDescription(weatherDescription) {
 }
 
 async function displayWeatherLocationInformation(location) {
-    const locationName = displayWeatherLocationName(location.resolvedAddress);
+    const locationName = document.querySelector('#weather-location');
+
+    locationName.textContent = location.resolvedAddress;
+
+    // const locationName = displayWeatherLocationName(location.resolvedAddress);
 
     const weatherTempDisplay = displayCurrentWeatherIcon(
         location.days[0].icon,
@@ -166,12 +170,12 @@ async function displayWeatherLocationInformation(location) {
         location.days[0].description
     );
 
-    weatherInformationBox.append(
-        locationName,
-        weatherTempDisplay,
-        weatherTempAndConditionsDisplay,
-        weatherDescription
-    );
+    // weatherInformationBox.append(
+    //     locationName,
+    //     weatherTempDisplay,
+    //     weatherTempAndConditionsDisplay,
+    //     weatherDescription
+    // );
 }
 
 export { displayWeatherData };
