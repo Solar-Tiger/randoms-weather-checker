@@ -76,6 +76,18 @@ function updateCurrentTemperature(icon, currentTemp) {
     currentTemperature.textContent = currentTemp;
 }
 
+function updateWeatherData(max, min, conditionsCurrent) {
+    const tempMax = document.querySelector('.temp-max');
+    const tempMin = document.querySelector('.temp-min');
+    const weatherConditionsCurrent = document.querySelector(
+        '.weather-conditions-current'
+    );
+
+    tempMax.textContent = max;
+    tempMin.textContent = min;
+    weatherConditionsCurrent.textContent = conditionsCurrent;
+}
+
 function displayWeatherLocationInformation(location) {
     // Display weather location name
     updateLocationName(location.location);
@@ -84,15 +96,11 @@ function displayWeatherLocationInformation(location) {
     updateCurrentTemperature(location.weatherIcon, location.currentTemp);
 
     // Display min temp, max temp and weather conditions
-    const tempMax = document.querySelector('.temp-max');
-    const tempMin = document.querySelector('.temp-min');
-    const weatherConditionsCurrent = document.querySelector(
-        '.weather-conditions-current'
+    updateWeatherData(
+        location.tempMax,
+        location.tempMin,
+        location.weatherConditions
     );
-
-    tempMax.textContent = location.tempMax;
-    tempMin.textContent = location.tempMin;
-    weatherConditionsCurrent.textContent = location.weatherConditions;
 
     // Display weather description
     const weatherDescription = document.querySelector('.weather-description');
