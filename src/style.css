@@ -36,9 +36,9 @@ button {
 
 .weather-location {
     grid-column: 1 / span 2;
+    justify-self: center;
     font-size: 32px;
     font-weight: bold;
-    margin: auto;
 }
 
 .temperature-container {
