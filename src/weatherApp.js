@@ -10,10 +10,6 @@ import rain from './assets/images/weather-condition-icons/rain.svg';
 import snow from './assets/images/weather-condition-icons/snow.svg';
 import wind from './assets/images/weather-condition-icons/wind.svg';
 
-const weatherInformationBox = document.querySelector(
-    '.weather-information-box'
-);
-
 // Fetches and returns weather data JSON
 async function fetchWeatherData(location) {
     const currentDate = new Date();
@@ -26,33 +22,43 @@ async function fetchWeatherData(location) {
         `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}/${todaysDate}?key=LV7GDK42GAYSFKS3SEPANMFJL`
     );
 
+    if (!fetchedData.ok) {
+        throw new Error(fetchedData.status);
+    }
+
     const weatherData = await fetchedData.json();
 
-    return weatherData;
+    return {
+        location: weatherData.resolvedAddress,
+        weatherIcon: weatherData.days[0].icon,
+        currentTemp: weatherData.days[0].temp,
+        tempMax: weatherData.days[0].tempmax,
+        tempMin: weatherData.days[0].tempmin,
+        weatherConditions: weatherData.days[0].conditions,
+        weatherDescription: weatherData.days[0].description
+    };
 }
 
 // Displays fetched weather
 async function displayWeatherData(location) {
-    const fetchedWeatherData = await fetchWeatherData(location);
+    try {
+        const fetchedWeatherData = await fetchWeatherData(location);
 
-    // weatherInformationBox.textContent = '';
-
-    displayWeatherLocationInformation(fetchedWeatherData);
+        displayWeatherLocationInformation(fetchedWeatherData);
+    } catch (error) {
+        console.log(error);
+    }
 }
 
-function displayWeatherLocationName(locationName) {
-    const nameDisplay = document.createElement('p');
+function displayLocationName(name) {
+    const locationName = document.querySelector('#weather-location');
 
-    nameDisplay.classList.add('weather-location');
-    nameDisplay.textContent = locationName;
-
-    return nameDisplay;
+    locationName.textContent = name;
 }
 
-function displayCurrentWeatherIcon(weatherIcon, weatherCurrentTemp) {
-    const weatherTempDisplay = document.createElement('div');
-
-    weatherTempDisplay.classList.add('temperature-container');
+function displayCurrentTemperature(icon, currentTemp) {
+    const weatherIcon = document.querySelector('.weather-icon');
+    const currentTemperature = document.querySelector('.current-temperature');
 
     const weatherIcons = {
         'clear-day': clearDay,
@@ -66,116 +72,32 @@ function displayCurrentWeatherIcon(weatherIcon, weatherCurrentTemp) {
         wind: wind
     };
 
-    const weatherIconImg = document.createElement('img');
-
-    weatherIconImg.src = weatherIcons[weatherIcon];
-    weatherIconImg.width = '70';
-    weatherIconImg.height = '70';
-
-    const weatherCurrentTempDisplay = document.createElement('p');
-
-    weatherCurrentTempDisplay.classList.add('current-temperature');
-    weatherCurrentTempDisplay.textContent = weatherCurrentTemp;
-
-    weatherTempDisplay.append(weatherIconImg, weatherCurrentTempDisplay);
-
-    return weatherTempDisplay;
+    weatherIcon.src = weatherIcons[icon];
+    currentTemperature.textContent = currentTemp;
 }
 
-function displayWeatherMaxMinAndCondition(max, min, conditions) {
-    const weatherTempAndConditionsDisplay = document.createElement('div');
+function displayWeatherLocationInformation(location) {
+    // Display weather location name
+    displayLocationName(location.location);
 
-    weatherTempAndConditionsDisplay.classList.add('temp-and-conditions');
+    // Display weather location weather condition icon and current temperature
+    displayCurrentTemperature(location.weatherIcon, location.currentTemp);
 
-    const weatherMaxAndMin = document.createElement('div');
-    const weatherMax = document.createElement('div');
-    const weatherMin = document.createElement('div');
-
-    weatherMaxAndMin.classList.add('weather-max-and-min');
-    weatherMax.classList.add('weather-max');
-    weatherMin.classList.add('weather-min');
-
-    const maxDisplay = document.createElement('p');
-    const tempMax = document.createElement('p');
-
-    maxDisplay.classList.add('max');
-    tempMax.classList.add('max-temp');
-
-    maxDisplay.textContent = 'Max';
-    tempMax.textContent = max;
-
-    weatherMax.append(maxDisplay, tempMax);
-
-    const minDisplay = document.createElement('p');
-    const tempMin = document.createElement('p');
-
-    minDisplay.classList.add('min');
-    tempMin.classList.add('min-temp');
-
-    minDisplay.textContent = 'Min';
-    tempMin.textContent = min;
-
-    weatherMin.append(minDisplay, tempMin);
-
-    weatherMaxAndMin.append(weatherMax, weatherMin);
-
-    // Create conditions display
-    const weatherConditionsDisplay = document.createElement('div');
-
-    weatherConditionsDisplay.classList.add('weather-conditions');
-
-    const weatherConditionsCurrent = document.createElement('p');
-
-    weatherConditionsCurrent.classList.add('weather-conditions-current');
-    weatherConditionsCurrent.textContent = conditions;
-
-    weatherConditionsDisplay.appendChild(weatherConditionsCurrent);
-
-    weatherTempAndConditionsDisplay.append(
-        weatherMaxAndMin,
-        weatherConditionsDisplay
+    // Display min temp, max temp and weather conditions
+    const tempMax = document.querySelector('.temp-max');
+    const tempMin = document.querySelector('.temp-min');
+    const weatherConditionsCurrent = document.querySelector(
+        '.weather-conditions-current'
     );
 
-    return weatherTempAndConditionsDisplay;
-}
+    tempMax.textContent = location.tempMax;
+    tempMin.textContent = location.tempMin;
+    weatherConditionsCurrent.textContent = location.weatherConditions;
 
-function displayWeatherLocationDescription(weatherDescription) {
-    const descriptionDisplay = document.createElement('p');
+    // Display weather description
+    const weatherDescription = document.querySelector('.weather-description');
 
-    descriptionDisplay.classList.add('weather-description');
-    descriptionDisplay.textContent = weatherDescription;
-
-    return descriptionDisplay;
-}
-
-async function displayWeatherLocationInformation(location) {
-    const locationName = document.querySelector('#weather-location');
-
-    locationName.textContent = location.resolvedAddress;
-
-    // const locationName = displayWeatherLocationName(location.resolvedAddress);
-
-    const weatherTempDisplay = displayCurrentWeatherIcon(
-        location.days[0].icon,
-        location.days[0].temp
-    );
-
-    const weatherTempAndConditionsDisplay = displayWeatherMaxMinAndCondition(
-        location.days[0].tempmax,
-        location.days[0].tempmin,
-        location.days[0].conditions
-    );
-
-    const weatherDescription = displayWeatherLocationDescription(
-        location.days[0].description
-    );
-
-    // weatherInformationBox.append(
-    //     locationName,
-    //     weatherTempDisplay,
-    //     weatherTempAndConditionsDisplay,
-    //     weatherDescription
-    // );
+    weatherDescription.textContent = location.weatherDescription;
 }
 
 export { displayWeatherData };
