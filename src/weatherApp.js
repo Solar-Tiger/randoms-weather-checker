@@ -50,13 +50,13 @@ async function displayWeatherData(location) {
     }
 }
 
-function displayLocationName(name) {
+function updateLocationName(name) {
     const locationName = document.querySelector('#weather-location');
 
     locationName.textContent = name;
 }
 
-function displayCurrentTemperature(icon, currentTemp) {
+function updateCurrentTemperature(icon, currentTemp) {
     const weatherIcon = document.querySelector('.weather-icon');
     const currentTemperature = document.querySelector('.current-temperature');
 
@@ -78,10 +78,10 @@ function displayCurrentTemperature(icon, currentTemp) {
 
 function displayWeatherLocationInformation(location) {
     // Display weather location name
-    displayLocationName(location.location);
+    updateLocationName(location.location);
 
     // Display weather location weather condition icon and current temperature
-    displayCurrentTemperature(location.weatherIcon, location.currentTemp);
+    updateCurrentTemperature(location.weatherIcon, location.currentTemp);
 
     // Display min temp, max temp and weather conditions
     const tempMax = document.querySelector('.temp-max');
