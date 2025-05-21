@@ -10,10 +10,4 @@ function convertTemperature(temp, currentTempScale) {
     }
 }
 
-function changeDisplayToCelsius(currentTempScale) {
-    if (currentTempScale === 'Fahrenheit') {
-        return `Celsius`;
-    }
-}
-
-export { convertTemperature, changeDisplayToCelsius };
+export { convertTemperature };
