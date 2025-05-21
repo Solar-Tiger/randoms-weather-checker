@@ -1,34 +1,29 @@
 import { displayWeatherData } from './weatherApp';
 import { toggleTemp, changeTempScaleDisplay } from './toggleTemp';
-import { changeDisplayToCelsius } from './tempConverter';
 
 const locationName = document.querySelector('#location-name');
-const fetchWeather = document.querySelector('#fetch-weather');
+const getWeather = document.querySelector('#get-weather');
 const changeTemp = document.querySelector('#change-temp');
+const tempScale = document.querySelector('#temp-scale');
 
 // Event listener for button click
-
-fetchWeather.addEventListener('click', () => {
+getWeather.addEventListener('click', () => {
     displayWeatherData(locationName.value);
-    changeTemp.children[0].textContent = changeDisplayToCelsius(
-        changeTemp.children[0].textContent
-    );
+    tempScale.textContent = changeTempScaleDisplay(tempScale.textContent);
 });
 
 // Event listener for enter key
-
 locationName.addEventListener('keypress', (e) => {
     if (e.key !== 'Enter') return;
 
     e.preventDefault();
 
     displayWeatherData(locationName.value);
-    changeTemp.children[0].textContent = changeDisplayToCelsius(
-        changeTemp.children[0].textContent
-    );
+    tempScale.textContent = changeTempScaleDisplay(tempScale.textContent);
 });
 
+// Event listener for toggling current temp scale
 changeTemp.addEventListener('click', () => {
-    toggleTemp();
-    changeTempScaleDisplay();
+    toggleTemp(tempScale.textContent);
+    tempScale.textContent = changeTempScaleDisplay(tempScale.textContent);
 });
