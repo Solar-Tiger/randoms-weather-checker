@@ -1,13 +1,9 @@
 import { convertTemperature } from './tempConverter';
 
-function toggleTemp() {
-    const currentTempScale = document.querySelector(
-        '#change-temp > span'
-    ).textContent;
-
+function toggleTemp(currentTempScale) {
     let currentTemp = document.querySelector('.current-temperature');
-    let maxTemp = document.querySelector('.max-temp');
-    let minTemp = document.querySelector('.min-temp');
+    let maxTemp = document.querySelector('.temp-max');
+    let minTemp = document.querySelector('.temp-min');
 
     let updatedCurrentTemp = convertTemperature(
         Number(currentTemp.textContent),
@@ -27,13 +23,11 @@ function toggleTemp() {
     minTemp.textContent = updatedMinTemp;
 }
 
-function changeTempScaleDisplay() {
-    let currentTempScaleDisplay = document.querySelector('#change-temp > span');
-
-    if (currentTempScaleDisplay.textContent === 'Celsius') {
-        currentTempScaleDisplay.textContent = 'Fahrenheit';
+function changeTempScaleDisplay(currentTempScaleDisplay) {
+    if (currentTempScaleDisplay === 'Celsius') {
+        return 'Fahrenheit';
     } else {
-        currentTempScaleDisplay.textContent = 'Celsius';
+        return 'Celsius';
     }
 }
 
