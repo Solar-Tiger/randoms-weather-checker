@@ -1,5 +1,6 @@
 import './reset.css';
 import './style.css';
+import { changeTempScaleDisplay } from './toggleTemp';
 import clearDay from './assets/images/weather-condition-icons/clear-day.svg';
 import clearNight from './assets/images/weather-condition-icons/clear-night.svg';
 import cloudy from './assets/images/weather-condition-icons/cloudy.svg';
@@ -29,6 +30,7 @@ async function fetchWeatherData(location) {
     const weatherData = await fetchedData.json();
 
     return {
+        weatherDataDays: weatherData,
         location: weatherData.resolvedAddress,
         weatherIcon: weatherData.days[0].icon,
         currentTemp: weatherData.days[0].temp,
@@ -45,9 +47,16 @@ async function displayWeatherData(location) {
         const fetchedWeatherData = await fetchWeatherData(location);
 
         displayWeatherLocationInformation(fetchedWeatherData);
+        defaultToCelsius();
     } catch (error) {
         console.log(error);
     }
+}
+
+function defaultToCelsius() {
+    const tempScale = document.querySelector('#temp-scale');
+
+    tempScale.textContent = changeTempScaleDisplay();
 }
 
 function updateLocationName(name) {
