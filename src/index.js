@@ -9,7 +9,6 @@ const tempScale = document.querySelector('#temp-scale');
 // Event listener for button click
 getWeather.addEventListener('click', () => {
     displayWeatherData(locationName.value);
-    defaultToCelsius(tempScale.textContent);
 });
 
 // Event listener for enter key
@@ -19,7 +18,6 @@ locationName.addEventListener('keypress', (e) => {
     e.preventDefault();
 
     displayWeatherData(locationName.value);
-    defaultToCelsius(tempScale.textContent);
 });
 
 // Event listener for toggling current temp scale
@@ -27,9 +25,3 @@ changeTemp.addEventListener('click', () => {
     toggleTemp(tempScale.textContent);
     tempScale.textContent = changeTempScaleDisplay(tempScale.textContent);
 });
-
-function defaultToCelsius(currentTempScale) {
-    if (currentTempScale === 'Fahrenheit') {
-        tempScale.textContent = 'Celsius';
-    }
-}
