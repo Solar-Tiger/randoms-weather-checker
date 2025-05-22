@@ -97,6 +97,12 @@ function updateWeatherData(max, min, conditionsCurrent) {
     weatherConditionsCurrent.textContent = conditionsCurrent;
 }
 
+function updateWeatherDescription(description) {
+    const weatherDescription = document.querySelector('.weather-description');
+
+    weatherDescription.textContent = description;
+}
+
 function displayWeatherLocationInformation(location) {
     // Display weather location name
     updateLocationName(location.location);
@@ -112,9 +118,7 @@ function displayWeatherLocationInformation(location) {
     );
 
     // Display weather description
-    const weatherDescription = document.querySelector('.weather-description');
-
-    weatherDescription.textContent = location.weatherDescription;
+    updateWeatherDescription(location.weatherDescription);
 }
 
 export { displayWeatherData };
