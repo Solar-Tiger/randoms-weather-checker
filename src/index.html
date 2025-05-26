@@ -8,46 +8,51 @@
 </head>
 
 <body>
-    <h1>Random's Weather Checker!</h1>
+    <heading>
+        <h1>Random's Weather Checker!</h1>
+    </heading>
 
-    <form action="">
-        <fieldset class="weather-field">
-            <legend>Snail Transformation Report</legend>
-
-            <label for="location-name">Please input a location name:</label>
-            <input type="text" name="location-name" id="location-name" placeholder="e.g. Washington" required>
-        </fieldset>
-        <button type="button" id="get-weather">Get weather</button>
-    </form>
-
-    <div class="weather-information-box">
-        <p class="weather-location" id="weather-location">
-            California
-        </p>
-        <div class="temperature-container">
-            <img class="weather-icon" src="<%=require('./assets/images/weather-condition-icons/clear-day.svg')%>"
-                alt="sunny day" height="70" width="70">
-            <p class="current-temperature">45.5</p>
-        </div>
-        <div class="temp-and-conditions">
-            <div class="weather-max-and-min">
-                <div class="weather-max">
-                    <p class="max">Max</p>
-                    <p class="temp-max">48.7</p>
+    <main>
+        <form action="">
+            <fieldset class="weather-field">
+                <legend>Snail Transformation Report</legend>
+                <label for="location-name">Please input a location name:</label>
+                <input type="text" name="location-name" id="location-name" placeholder="e.g. Washington" required>
+            </fieldset>
+            <button type="button" id="get-weather">Get weather</button>
+        </form>
+        <div class="weather-information-box">
+            <p class="weather-location" id="weather-location">
+                California
+            </p>
+            <div class="temperature-container">
+                <img class="weather-icon" src="<%=require('./assets/images/weather-condition-icons/clear-day.svg')%>"
+                    alt="sunny day" height="70" width="70">
+                <p class="current-temperature">45.5</p>
+            </div>
+            <div class="temp-and-conditions">
+                <div class="weather-max-and-min">
+                    <div class="weather-max">
+                        <p class="max">Max</p>
+                        <p class="temp-max">48.7</p>
+                    </div>
+                    <div class="weather-min">
+                        <p class="min">Min</p>
+                        <p class="temp-min">41.2</p>
+                    </div>
                 </div>
-                <div class="weather-min">
-                    <p class="min">Min</p>
-                    <p class="temp-min">41.2</p>
+                <div class="weather-conditions">
+                    <p class="weather-conditions-current">Cloudy, Rainy, Snow</p>
                 </div>
             </div>
-            <div class="weather-conditions">
-                <p class="weather-conditions-current">Cloudy, Rainy, Snow</p>
-            </div>
+            <p class="weather-description">This is the current weather condition. Accept you're a snail now.</p>
         </div>
-        <p class="weather-description">This is the current weather condition. Accept you're a snail now.</p>
-    </div>
+        <button class="change-temp" id="change-temp">Change to <span id="temp-scale">Celsius</span></button>
+    </main>
 
-    <button class="change-temp" id="change-temp">Change to <span id="temp-scale">Celsius</span></button>
+    <footer>
+        <p>@ 2025, The Odin Project</p>
+    </footer>
 </body>
 
 </html>
