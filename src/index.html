@@ -42,10 +42,71 @@
                     </div>
                 </div>
                 <div class="weather-conditions">
-                    <p class="weather-conditions-current">Cloudy, Rainy, Snow</p>
+                    <p class="weather-conditions-current">Sunny</p>
                 </div>
             </div>
             <p class="weather-description">This is the current weather condition. Accept you're a snail now.</p>
+            <div class="next-three-days">
+                <div class="temperature-container">
+                    <img class="weather-icon"
+                        src="<%=require('./assets/images/weather-condition-icons/clear-day.svg')%>" alt="sunny day"
+                        height="70" width="70">
+                    <div class="temp-and-conditions">
+                        <div class="weather-max-and-min">
+                            <div class="weather-max">
+                                <p class="max">Max</p>
+                                <p class="temp-max">56.4</p>
+                            </div>
+                            <div class="weather-min">
+                                <p class="min">Min</p>
+                                <p class="temp-min">47.2</p>
+                            </div>
+                        </div>
+                        <div class="weather-conditions">
+                            <p class="weather-conditions-current">Cloudy, Rainy, Snow</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="temperature-container">
+                    <img class="weather-icon"
+                        src="<%=require('./assets/images/weather-condition-icons/partly-cloudy-day.svg')%>"
+                        alt="sunny day" height="70" width="70">
+                    <div class="temp-and-conditions">
+                        <div class="weather-max-and-min">
+                            <div class="weather-max">
+                                <p class="max">Max</p>
+                                <p class="temp-max">51.1</p>
+                            </div>
+                            <div class="weather-min">
+                                <p class="min">Min</p>
+                                <p class="temp-min">42.7</p>
+                            </div>
+                        </div>
+                        <div class="weather-conditions">
+                            <p class="weather-conditions-current">Partly Cloudy Day</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="temperature-container">
+                    <img class="weather-icon" src="<%=require('./assets/images/weather-condition-icons/rain.svg')%>"
+                        alt="sunny day" height="70" width="70">
+                    <div class="temp-and-conditions">
+                        <div class="weather-max-and-min">
+                            <div class="weather-max">
+                                <p class="max">Max</p>
+                                <p class="temp-max">44.4</p>
+                            </div>
+                            <div class="weather-min">
+                                <p class="min">Min</p>
+                                <p class="temp-min">38.5</p>
+                            </div>
+                        </div>
+                        <div class="weather-conditions">
+                            <p class="weather-conditions-current">Cloudy, Rainy, Snow</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <button class="change-temp" id="change-temp">Change to <span id="temp-scale">Celsius</span></button>
     </main>
