@@ -71,14 +71,16 @@ button {
     text-align: center;
 }
 
-.next-three-days {
+.next-three-days-container {
     grid-column: 1 / span 2;
     display: flex;
 
-    & .temperature-container {
+    & .next-three-days {
         display: flex;
         flex-direction: column;
         justify-content: space-evenly;
         align-items: center;
+        margin: 5px;
+        border: 2px solid black;
     }
 }
