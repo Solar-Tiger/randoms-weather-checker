@@ -70,3 +70,15 @@ button {
     margin: 10px;
     text-align: center;
 }
+
+.next-three-days {
+    grid-column: 1 / span 2;
+    display: flex;
+
+    & .temperature-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+}
