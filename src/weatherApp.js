@@ -13,14 +13,8 @@ import wind from './assets/images/weather-condition-icons/wind.svg';
 
 // Fetches and returns weather data JSON
 async function fetchWeatherData(location) {
-    const currentDate = new Date();
-
-    const todaysDate = `${currentDate.getFullYear()}-${
-        currentDate.getMonth() + 1
-    }-${currentDate.getDate()}`;
-
     const fetchedData = await fetch(
-        `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}/${todaysDate}?key=LV7GDK42GAYSFKS3SEPANMFJL`
+        `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?key=LV7GDK42GAYSFKS3SEPANMFJL`
     );
 
     if (!fetchedData.ok) {
@@ -45,6 +39,8 @@ async function fetchWeatherData(location) {
 async function displayWeatherData(location) {
     try {
         const fetchedWeatherData = await fetchWeatherData(location);
+
+        console.log(fetchedWeatherData.weatherDataDays);
 
         displayWeatherLocationInformation(fetchedWeatherData);
         defaultToCelsius();
