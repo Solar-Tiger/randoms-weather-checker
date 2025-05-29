@@ -1,6 +1,6 @@
 import './reset.css';
 import './style.css';
-import { changeTempScaleDisplay } from './toggleTemp';
+import { toggleTemp, changeTempScaleDisplay } from './toggleTemp';
 import clearDay from './assets/images/weather-condition-icons/clear-day.svg';
 import clearNight from './assets/images/weather-condition-icons/clear-night.svg';
 import cloudy from './assets/images/weather-condition-icons/cloudy.svg';
@@ -114,4 +114,15 @@ function displayWeatherLocationInformation(weatherData) {
     updateWeatherDescription(weatherData.weatherInfo[0].description);
 }
 
-export { displayWeatherData };
+function changeTempScale() {
+    const changeTemp = document.querySelector('#change-temp');
+    const tempScale = document.querySelector('#temp-scale');
+
+    // Event listener for toggling current temp scale
+    changeTemp.addEventListener('click', () => {
+        toggleTemp(tempScale.textContent);
+        tempScale.textContent = changeTempScaleDisplay(tempScale.textContent);
+    });
+}
+
+export { displayWeatherData, changeTempScale };
