@@ -24,14 +24,8 @@ async function fetchWeatherData(location) {
     const weatherData = await fetchedData.json();
 
     return {
-        weatherDataDays: weatherData,
-        location: weatherData.resolvedAddress,
-        weatherIcon: weatherData.days[0].icon,
-        currentTemp: weatherData.days[0].temp,
-        tempMax: weatherData.days[0].tempmax,
-        tempMin: weatherData.days[0].tempmin,
-        weatherConditions: weatherData.days[0].conditions,
-        weatherDescription: weatherData.days[0].description
+        weatherInfo: weatherData.days,
+        address: weatherData.resolvedAddress
     };
 }
 
@@ -40,7 +34,7 @@ async function displayWeatherData(location) {
     try {
         const fetchedWeatherData = await fetchWeatherData(location);
 
-        console.log(fetchedWeatherData.weatherDataDays);
+        console.log(fetchedWeatherData);
 
         displayWeatherLocationInformation(fetchedWeatherData);
         defaultToCelsius();
@@ -99,22 +93,25 @@ function updateWeatherDescription(description) {
     weatherDescription.textContent = description;
 }
 
-function displayWeatherLocationInformation(location) {
+function displayWeatherLocationInformation(weatherData) {
     // Display weather location name
-    updateLocationName(location.location);
+    updateLocationName(weatherData.address);
 
     // Display weather location weather condition icon and current temperature
-    updateCurrentTemperature(location.weatherIcon, location.currentTemp);
+    updateCurrentTemperature(
+        weatherData.weatherInfo[0].icon,
+        weatherData.weatherInfo[0].temp
+    );
 
     // Display min temp, max temp and weather conditions
     updateWeatherData(
-        location.tempMax,
-        location.tempMin,
-        location.weatherConditions
+        weatherData.weatherInfo[0].tempmax,
+        weatherData.weatherInfo[0].tempmin,
+        weatherData.weatherInfo[0].conditions
     );
 
     // Display weather description
-    updateWeatherDescription(location.weatherDescription);
+    updateWeatherDescription(weatherData.weatherInfo[0].description);
 }
 
 export { displayWeatherData };
