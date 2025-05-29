@@ -55,8 +55,8 @@ function updateLocationName(name) {
     locationName.textContent = name;
 }
 
-function updateCurrentTemperature(icon, currentTemp) {
-    const weatherIcon = document.querySelector('.weather-icon');
+function updateCurrentTemperature(weatherTempAndIcon) {
+    const weatherIcon = document.querySelectorAll('.weather-icon');
     const currentTemperature = document.querySelector('.current-temperature');
 
     const weatherIcons = {
@@ -71,26 +71,33 @@ function updateCurrentTemperature(icon, currentTemp) {
         wind: wind
     };
 
-    weatherIcon.src = weatherIcons[icon];
-    currentTemperature.textContent = currentTemp;
+    for (let i = 0; i < weatherIcon.length; i++) {
+        weatherIcon[i].src = weatherIcons[weatherTempAndIcon[i].icon];
+    }
+
+    currentTemperature.textContent = weatherTempAndIcon[0].temp;
 }
 
-function updateWeatherData(max, min, conditionsCurrent) {
-    const tempMax = document.querySelector('.temp-max');
-    const tempMin = document.querySelector('.temp-min');
-    const weatherConditionsCurrent = document.querySelector(
+function updateWeatherData(weatherMinMaxConditions) {
+    const tempMax = document.querySelectorAll('.temp-max');
+    const tempMin = document.querySelectorAll('.temp-min');
+    const weatherConditionsCurrent = document.querySelectorAll(
         '.weather-conditions-current'
     );
 
-    tempMax.textContent = max;
-    tempMin.textContent = min;
-    weatherConditionsCurrent.textContent = conditionsCurrent;
+    for (let i = 0; i < weatherMinMaxConditions.length; i++) {
+        console.log(tempMax[i].textContent);
+        tempMax[i].textContent = weatherMinMaxConditions[i].tempmax;
+        tempMin[i].textContent = weatherMinMaxConditions[i].tempmin;
+        weatherConditionsCurrent[i].textContent =
+            weatherMinMaxConditions[i].conditions;
+    }
 }
 
 function updateWeatherDescription(description) {
     const weatherDescription = document.querySelector('.weather-description');
 
-    weatherDescription.textContent = description;
+    weatherDescription.textContent = description[0].description;
 }
 
 function displayWeatherLocationInformation(weatherData) {
@@ -98,20 +105,13 @@ function displayWeatherLocationInformation(weatherData) {
     updateLocationName(weatherData.address);
 
     // Display weather location weather condition icon and current temperature
-    updateCurrentTemperature(
-        weatherData.weatherInfo[0].icon,
-        weatherData.weatherInfo[0].temp
-    );
+    updateCurrentTemperature(weatherData.weatherInfo);
 
     // Display min temp, max temp and weather conditions
-    updateWeatherData(
-        weatherData.weatherInfo[0].tempmax,
-        weatherData.weatherInfo[0].tempmin,
-        weatherData.weatherInfo[0].conditions
-    );
+    updateWeatherData(weatherData.weatherInfo);
 
     // Display weather description
-    updateWeatherDescription(weatherData.weatherInfo[0].description);
+    updateWeatherDescription(weatherData.weatherInfo);
 }
 
 function changeTempScale() {
