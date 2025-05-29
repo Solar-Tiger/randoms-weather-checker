@@ -2,34 +2,8 @@ import { convertTemperature } from './tempConverter';
 
 function toggleTemp(currentTempScale) {
     let currentTemp = document.querySelector('.current-temperature');
-    let maxTemp = document.querySelector('.temp-max');
-    let minTemp = document.querySelector('.temp-min');
-
-    let updatedCurrentTemp = convertTemperature(
-        Number(currentTemp.textContent),
-        currentTempScale
-    );
-    let updatedMaxTemp = convertTemperature(
-        Number(maxTemp.textContent),
-        currentTempScale
-    );
-    let updatedMinTemp = convertTemperature(
-        Number(minTemp.textContent),
-        currentTempScale
-    );
-
-    currentTemp.textContent = updatedCurrentTemp;
-    maxTemp.textContent = updatedMaxTemp;
-    minTemp.textContent = updatedMinTemp;
-}
-
-function toggleAllTemps(currentTempScale) {
-    let currentTemp = document.querySelector('.current-temperature');
     let maxTemp = document.querySelectorAll('.temp-max');
     let minTemp = document.querySelectorAll('.temp-min');
-    let weatherConditions = document.querySelectorAll(
-        '.weather-conditions-current'
-    );
 
     let updatedCurrentTemp = convertTemperature(
         Number(currentTemp.textContent),
