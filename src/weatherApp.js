@@ -85,8 +85,7 @@ function updateWeatherData(weatherMinMaxConditions) {
         '.weather-conditions-current'
     );
 
-    for (let i = 0; i < weatherMinMaxConditions.length; i++) {
-        console.log(tempMax[i].textContent);
+    for (let i = 0; i < tempMax.length; i++) {
         tempMax[i].textContent = weatherMinMaxConditions[i].tempmax;
         tempMin[i].textContent = weatherMinMaxConditions[i].tempmin;
         weatherConditionsCurrent[i].textContent =
@@ -95,7 +94,7 @@ function updateWeatherData(weatherMinMaxConditions) {
 }
 
 function updateWeatherDescription(description) {
-    const weatherDescription = document.querySelector('.weather-description');
+    const weatherDescription = document.querySelector('.weather-description p');
 
     weatherDescription.textContent = description[0].description;
 }
