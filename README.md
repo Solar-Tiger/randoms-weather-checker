@@ -1,13 +1,7 @@
-# Webpack Template for future The Odin Project projects
+# Random's Weather Checker
 
-A base webpack template that future projects will utilise for easier project setup
+A simple, easy to use weather checking app.
 
 ## How to use
 
-Just run "npm install" and you're good to go
-
-## This contains 3 different scripts
-
-- **"npm start"** to open a live server and preview live changes
-- **"npm run devbuild"** to run a development build
-- **"npm run build"** to run a production build
+Just put in your location and it will handle the rest!
