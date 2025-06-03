@@ -82,10 +82,6 @@ function updateCurrentTemperature(weatherTempAndIcon) {
             `./assets/images/weather-condition-icons/${weatherTempAndIcon[i].icon}.svg`
         ).then((weatherCondition) => {
             weatherIcon[i].src = weatherCondition.default;
-
-            console.log(weatherCondition.default);
-
-            console.log(weatherTempAndIcon[i].icon);
         });
     }
 
