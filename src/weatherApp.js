@@ -78,10 +78,14 @@ function updateCurrentTemperature(weatherTempAndIcon) {
     // }
 
     for (let i = 0; i < weatherIcon.length; i++) {
-        weatherIcon[i].src = import(
+        import(
             `./assets/images/weather-condition-icons/${weatherTempAndIcon[i].icon}.svg`
         ).then((weatherCondition) => {
-            return weatherCondition.default;
+            weatherIcon[i].src = weatherCondition.default;
+
+            console.log(weatherCondition.default);
+
+            console.log(weatherTempAndIcon[i].icon);
         });
     }
 
