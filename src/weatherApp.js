@@ -1,15 +1,6 @@
 import './reset.css';
 import './style.css';
 import { toggleTemp, changeTempScaleDisplay } from './toggleTemp';
-// import clearDay from './assets/images/weather-condition-icons/clear-day.svg';
-// import clearNight from './assets/images/weather-condition-icons/clear-night.svg';
-// import cloudy from './assets/images/weather-condition-icons/cloudy.svg';
-// import fog from './assets/images/weather-condition-icons/fog.svg';
-// import partlyCloudyDay from './assets/images/weather-condition-icons/partly-cloudy-day.svg';
-// import partylyCloudyNight from './assets/images/weather-condition-icons/partly-cloudy-night.svg';
-// import rain from './assets/images/weather-condition-icons/rain.svg';
-// import snow from './assets/images/weather-condition-icons/snow.svg';
-// import wind from './assets/images/weather-condition-icons/wind.svg';
 
 // Fetches and returns weather data JSON
 async function fetchWeatherData(location) {
@@ -58,24 +49,6 @@ function updateLocationName(name) {
 function updateCurrentTemperature(weatherTempAndIcon) {
     const weatherIcon = document.querySelectorAll('.weather-icon');
     const currentTemperature = document.querySelector('.current-temperature');
-
-    // const weatherIcons = {
-    //     'clear-day': clearDay,
-    //     'clear-night': clearNight,
-    //     cloudy: cloudy,
-    //     fog: fog,
-    //     'partly-cloudy-day': partlyCloudyDay,
-    //     'partly-cloudy-night': partylyCloudyNight,
-    //     rain: rain,
-    //     snow: snow,
-    //     wind: wind
-    // };
-
-    // for (let i = 0; i < weatherIcon.length; i++) {
-    //     weatherIcon[i].src = weatherIcons[weatherTempAndIcon[i].icon];
-
-    //     console.log(weatherTempAndIcon[i].icon);
-    // }
 
     for (let i = 0; i < weatherIcon.length; i++) {
         import(
